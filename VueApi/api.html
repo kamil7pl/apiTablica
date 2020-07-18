@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>Tablica</title>
+   <meta charset="UTF-8" />
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.min.js"></script>
+ </head>
+ 
+
+ <body>
+   <div id="app">{{tab}}</div>
+
+   <script>
+     var app = new Vue({
+       el: "#app",
+       data: {
+         tab: ""
+       },
+	   methods: {
+		funkcjaApi: function(){
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					resp = this.responseText;
+					app.przypisanie();
+					
+					}
+			};
+			
+			
+				
+				funkcja();
+			
+
+			function funkcja() {
+				xhttp.open("GET", "plik.txt", true); 
+				xhttp.send();
+			}
+		},
+		przypisanie: function(){
+			this.tab=JSON.parse(resp).tablica;
+		}
+	   }
+     });
+	 app.funkcjaApi();
+   </script>
+ </body>
+</html>
